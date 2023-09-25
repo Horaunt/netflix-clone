@@ -1,3 +1,9 @@
 *{
   margin: 0;
 }
+.app{
+  background-color: #111;
+  color: white;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
