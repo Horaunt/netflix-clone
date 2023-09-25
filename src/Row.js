@@ -1,25 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from './axios';
 // import fetchUrl from './App';
+import './Row.css';
 
-function Row({ title, fetchUrl }) {
+const base_url = "https://image.tmdb.org/t/p/original/"
+
+function Row({ title, fetchUrl, isLargeRow}) {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     // if [], run once when the row loads, and don't run again
     async function fetchData() {
       const request = await axios.get(fetchUrl);
-      console.log(request);
+      setMovies(request.data.results);
       return request;
     }
-    
     fetchData(); 
-
   }, [fetchUrl]);
+    console.log(movies);  
 
   return (
-    <div>
+    <div className="row">
       <h2>{title}</h2>
+
+      <div className="row__posters">
+        {/* Several row posters */}
+
+        {movies.map(movie => (
+            <img 
+            key={movie.id}
+            className="row__poster"
+            src={`${base_url}${isLargeRow ? movie.poster_path:movie.backdrop_part}`} 
+            alt={movie.name}/>
+        ))}
+      </div>
       {/* container -> posters */}
     </div>
   );
