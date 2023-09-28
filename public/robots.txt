@@ -1,3 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
-User-agent: *
+User-agent: http://192.168.157.116/
 Disallow:
+*
